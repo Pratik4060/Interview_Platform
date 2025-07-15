@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { cn } from '@/lib/utils'
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -52,13 +53,20 @@ const  Agent = ({userName}:AgentProps) => {
                 callStatus !== "CONNECTING" && "hidden"
               )}
             />
-            </button>
-            </div>
+            <span className="relative">
+              {callStatus === "INACTIVE" || callStatus === "FINISHED"
+                ? "Call"
+                : ". . ."}
+            </span>
+          </button>
+        ) : (
+          <button className="btn-disconnect" onClick={() => handleDisconnect()}>
+            End
+          </button>
+        )}
+      </div>
+    </>
+  );
+};
 
-
-</>
-
-  )
-}
-
-export default Agent
+export default Agent;
